@@ -22,6 +22,8 @@
 
     <script type="text/javascript">
     function showSite(str) {
+    	var xmlhttp;
+    	
         if (str == '') {
             document.getElementById('txtHint').innerHTML = '';
             return;
@@ -40,6 +42,16 @@
         xmlhttp.send();
     }
     </script>
+    <table>
+		<tr>
+			<th style="background-color: #555555; color: white;">ID</th>
+			<th style="background-color: #555555; color: white;">NAME</th>
+			<th style="background-color: #555555; color: white;">SITE URL</th>
+			<th style="background-color: #555555; color: white;">ALEXA</th>
+			<th style="background-color: #555555; color: white;">COUNTRY</th>
+		</tr>
+	</table>
 </body>
 
 </html>
+

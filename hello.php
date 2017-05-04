@@ -29,4 +29,15 @@ $A = array('a' => 'apple', 'b' => 'banana', 'c' => 'cat', 'd' => array('x', 'y',
 // print_r($A);
 
 echo $A['a'];
+
+
+$xmlDoc = new DOMDocument();
+$xmlDoc->load('links.xml');
+
+$x = $xmlDoc->getElementsByTagName('link');
+for ($i = 0; $i < ($x->length); $i++) { 
+	# code...
+	$y = $x->item($i)->getElementsByTagName('title');
+	echo $y->item(0)->childNodes->item(0)->nodeValue;
+}
 ?>
