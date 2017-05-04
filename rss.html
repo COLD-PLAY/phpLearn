@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>rss</title>
+	<meta charset="utf-8">
+</head>
+<body>
+	<form>
+		<select onchange="showRSS(this.value)">
+			<option value="">选择一个 RSS-feed:</option>
+			<option value="rss">读取RSS 数据</option>
+		</select>
+	</form>
+	<br>
+	<div id="rssOutput">RSS-feed 数据列表...</div>
+
+	<script type="text/javascript">
+		function showRSS(str) {
+			var xmlhttp;
+			if (str.length == 0) {
+				document.getElementById('rssOutput').innerHTML = '';
+				return ;
+			}
+			if (window.XMLHttpRequest) {
+				xmlhttp = new XMLHttpRequest();
+			}
+			else {
+				xmlhttp = new ActiveXObject('Microsoft.XMLHTTP');
+			}
+			xmlhttp.onreadystatechange = function() {
+				if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+					document.getElementById('rssOutput').innerHTML = xmlhttp.responseText;
+				}
+			}
+
+			xmlhttp.open('GET', 'getrss.php?q=' + str, true);
+			xmlhttp.send();
+		}
+	</script>
+</body>
+</html>
