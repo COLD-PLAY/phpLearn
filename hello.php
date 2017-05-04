@@ -40,4 +40,21 @@ for ($i = 0; $i < ($x->length); $i++) {
 	$y = $x->item($i)->getElementsByTagName('title');
 	echo $y->item(0)->childNodes->item(0)->nodeValue;
 }
+
+echo "\n=========================\n";
+
+$filename = 'poll_result.txt';
+$content = file($filename);
+$fp = fopen($filename, 'w');
+
+$array = explode('||', $content[0]);
+$yes = $array[0];
+$no = $array[1];
+
+$yes++;
+$no++;
+
+fputs($fp, "$yes||$no");
+fclose($fp);
+
 ?>

@@ -7,26 +7,31 @@
 </head>
 
 <body>
-    <div>
-        <h3>do u like php and ajax?</h3>
+    <div id="poll">
+        <h3>你喜欢 PHP 和 AJAX 吗?</h3>
         <form>
-            yes: <input type="radio" name="vote" value="1" onclick="getVote(this.value)">
-            <br>
-            no: <input type="radio" name="vote" value="0" onclick="getVote(this.value)">
+            是:
+            <input type="radio" name="vote" value="0" onclick="getVote(this.value)">
+            <br> 否:
+            <input type="radio" name="vote" value="1" onclick="getVote(this.value)">
         </form>
     </div>
-    <script type="text/javascript">
+    
+    <script>
     function getVote(int) {
-        var xmlhttp;
         if (window.XMLHttpRequest) {
+            // IE7+, Firefox, Chrome, Opera, Safari 执行代码
             xmlhttp = new XMLHttpRequest();
         } else {
-            xmlhttp = new ActiveXObject('Microsoft.XMLHTTP');
+            // IE6, IE5 执行代码
+            xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
         }
         xmlhttp.onreadystatechange = function() {
-            document.getElementById('poll').innerHTML = xmlhttp.responseText;
+            if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                document.getElementById("poll").innerHTML = xmlhttp.responseText;
+            }
         }
-        xmlhttp.open('GET', 'poll_vote.php?vote=' + int, true);
+        xmlhttp.open("GET", "poll_vote.php?vote=" + int, true);
         xmlhttp.send();
     }
     </script>
